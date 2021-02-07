@@ -1,1 +1,1 @@
-![medicament.ma API](https://i.imgur.com/qvLvZui.png)
+![medicament.ma API](https://i.imgur.com/tca7uHW.png)
