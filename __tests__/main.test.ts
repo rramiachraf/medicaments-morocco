@@ -12,7 +12,7 @@ const data = {
 test('get medicament infos using a valid barcode', done => {
   const { validBarCode } = data
   request(app)
-    .get(`/barcode/${validBarCode}`)
+    .get(`/api/barcode/${validBarCode}`)
     .expect(200)
     .end((err, res) => {
       if (err) throw err
@@ -23,7 +23,7 @@ test('get medicament infos using a valid barcode', done => {
 test('get medicament infos using an invalid barcode', done => {
   const { invalidBarCode } = data
   request(app)
-    .get(`/barcode/${invalidBarCode}`)
+    .get(`/api/barcode/${invalidBarCode}`)
     .expect(404)
     .end((err, { body }) => {
       if (err) throw err
@@ -35,7 +35,7 @@ test('get medicament infos using an invalid barcode', done => {
 test('search medicaments using a valid price', done => {
   const { validPrice } = data
   request(app)
-    .get(`/price/${validPrice}`)
+    .get(`/api/price/${validPrice}`)
     .expect(200)
     .end((err, { body }) => {
       if (err) throw err
@@ -47,7 +47,7 @@ test('search medicaments using a valid price', done => {
 test('search medicaments using an invalid price', done => {
   const { invalidPrice } = data
   request(app)
-    .get(`/price/${invalidPrice}`)
+    .get(`/api/price/${invalidPrice}`)
     .expect(200)
     .end((err, { body }) => {
       if (err) throw err
