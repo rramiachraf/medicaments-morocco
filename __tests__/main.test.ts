@@ -6,13 +6,14 @@ const data = {
   validBarCode: '6118000012726',
   invalidBarCode: '1234',
   validPrice: 25,
-  invalidPrice: 20_000_000
+  invalidPrice: 20_000_000,
+  validProvider: 10906,
+  invalidProvider: 1
 }
 
 test('get medicament infos using a valid barcode', done => {
-  const { validBarCode } = data
   request(app)
-    .get(`/api/barcode/${validBarCode}`)
+    .get(`/api/barcode/${data.validBarCode}`)
     .expect(200)
     .end((err, res) => {
       if (err) throw err
@@ -21,9 +22,8 @@ test('get medicament infos using a valid barcode', done => {
 })
 
 test('get medicament infos using an invalid barcode', done => {
-  const { invalidBarCode } = data
   request(app)
-    .get(`/api/barcode/${invalidBarCode}`)
+    .get(`/api/barcode/${data.invalidBarCode}`)
     .expect(404)
     .end((err, { body }) => {
       if (err) throw err
@@ -33,9 +33,8 @@ test('get medicament infos using an invalid barcode', done => {
 })
 
 test('search medicaments using a valid price', done => {
-  const { validPrice } = data
   request(app)
-    .get(`/api/price/${validPrice}`)
+    .get(`/api/price/${data.validPrice}`)
     .expect(200)
     .end((err, { body }) => {
       if (err) throw err
@@ -45,9 +44,30 @@ test('search medicaments using a valid price', done => {
 })
 
 test('search medicaments using an invalid price', done => {
-  const { invalidPrice } = data
   request(app)
-    .get(`/api/price/${invalidPrice}`)
+    .get(`/api/price/${data.invalidPrice}`)
+    .expect(200)
+    .end((err, { body }) => {
+      if (err) throw err
+      expect(body.results).toBe(0)
+      done()
+    })
+})
+
+test('search medicaments using a valid provider', done => {
+  request(app)
+    .get(`/api/provider/${data.validProvider}`)
+    .expect(200)
+    .end((err, { body }) => {
+      if (err) throw err
+      expect(body.results).toBeGreaterThan(0)
+      done()
+    })
+})
+
+test('search medicaments using an invalid provider', done => {
+  request(app)
+    .get(`/api/provider/${data.invalidProvider}`)
     .expect(200)
     .end((err, { body }) => {
       if (err) throw err

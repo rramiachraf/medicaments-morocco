@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import fetch from 'node-fetch'
 
-import { getInfos } from '../response'
+import { medicamentPage } from '../helpers/response'
 
 export const route = Router()
 
@@ -15,7 +15,7 @@ route.get('/barcode/:barcode', async (req, res) => {
       throw new Error('Not found')
     }
     const html = await response.text()
-    res.json(getInfos(html))
+    res.json(medicamentPage(html))
   } catch (e) {
     res.status(404).json({ error: e.message })
   }

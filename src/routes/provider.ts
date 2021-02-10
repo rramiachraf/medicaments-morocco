@@ -5,10 +5,14 @@ import { resultsPage } from '../helpers/response'
 
 export const route = Router()
 
-route.get('/price/:price', async (req, res) => {
+route.get('/provider/:providerID', async (req, res) => {
   try {
-    const { price } = req.params
-    const url = `https://medicament.ma/?choice=price&s=${price}`
+    const { page } = req.query
+    const { providerID } = req.params
+    const url =
+      Number(page) > 0
+        ? `https://medicament.ma/page/${page}?choice=fournisseur&s=${providerID}`
+        : `https://medicament.ma/?choice=fournisseur&s=${providerID}`
     const response = await fetch(url)
     const { status } = response
     if (status === 404) {

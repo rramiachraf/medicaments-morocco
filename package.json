@@ -1,10 +1,12 @@
 {
-  "name": "medicament-api",
+  "name": "medicaments-morocco",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./build/server.js",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev src/server.ts",
+    "start:dev": "ts-node-dev src/server.ts",
+    "start:prod": "node ./build/server.js",
+    "build": "tsc",
     "test": "jest"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 import cheerio = require('cheerio')
 
-export const getInfos = (html: string) => {
+export const medicamentPage = (html: string) => {
   const $ = cheerio.load(html)
   const medicament = $('.single.single-medicament > h3').text()
   const presentation = $('tr.field-presentation > .value').text()
@@ -40,7 +40,7 @@ export const getInfos = (html: string) => {
   }
 }
 
-export const getSearches = (html: string) => {
+export const resultsPage = (html: string) => {
   const $ = cheerio.load(html)
   const results = $('.bg-info > strong').text()
   let items: any[] = []

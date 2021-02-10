@@ -3,7 +3,9 @@
     "strict": true,
     "target": "ESNext",
     "module": "CommonJS",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "outDir": "build",
+    "rootDir": "src"
   },
   "exclude": ["node_modules", "__tests__", ".vsocde"]
 }
